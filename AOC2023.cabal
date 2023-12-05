@@ -51,6 +51,7 @@ library aoc2023-lib
 test-suite tests
     type: exitcode-stdio-1.0
     main-is: Test.hs
+    default-extensions: OverloadedStrings
     build-depends:    base ^>=4.14,
                       bytestring ^>=0.11.4.0,
                       HUnit ^>=1.6,
