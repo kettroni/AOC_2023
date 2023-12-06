@@ -46,6 +46,7 @@ tests = do
 
                     -- Day5
                     , ("5.1e", "35")
+                    , ("5.1", "389056265")
                     ]
   pure $ TestList ts
 
