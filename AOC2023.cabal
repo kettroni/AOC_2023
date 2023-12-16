@@ -23,15 +23,23 @@ maintainer:         ronikettunen96@gmail.com
 -- category:
 extra-source-files: CHANGELOG.md
 
+common base
+    default-language: GHC2021
+    default-extensions: OverloadedStrings
+    ghc-options: -Wall -fdefer-typed-holes
+    build-depends:    relude,
+                      base,
+
 executable aoc2023
+    import:           base
     main-is:          Main.hs
 
-    build-depends:    base ^>=4.14.3.0,
-                      aoc2023-lib
+    build-depends:    aoc2023-lib
     hs-source-dirs:   app
-    default-language: Haskell2010
+    default-language: GHC2021
 
 library aoc2023-lib
+    import:           base
     exposed-modules:  Solution
 
     other-modules:    Utils
@@ -43,18 +51,17 @@ library aoc2023-lib
 
     -- LANGUAGE extensions used by modules in this package.
     default-extensions: OverloadedStrings
-    build-depends:    base ^>=4.14.3.0,
-                      bytestring ^>=0.11.4.0,
-                      containers ^>=0.6.5.1
-    hs-source-dirs:   app, lib, lib/days
+    build-depends:      bytestring ^>=0.11.4.0
+    hs-source-dirs:     app,
+                        lib,
+                        lib/days
 
 test-suite tests
-    type: exitcode-stdio-1.0
-    main-is: Test.hs
+    import:             base
+    type:               exitcode-stdio-1.0
+    main-is:            Test.hs
     default-extensions: OverloadedStrings
-    build-depends:    base ^>=4.14,
-                      bytestring ^>=0.11.4.0,
-                      HUnit ^>=1.6,
-                      aoc2023-lib
-    hs-source-dirs: tests
-    default-language: Haskell2010
+    build-depends:      aoc2023-lib,
+                        HUnit
+    hs-source-dirs:     tests
+    default-language:   GHC2021

@@ -6,7 +6,7 @@ import D1 (day1part1, day1part2)
 import D2 (day2part1, day2part2)
 import D3 (day3part1, day3part2)
 import D4 (day4part1, day4part2)
-import D5 (day5part1)
+import D5 (day5part1, day5part2)
 
 runSolution :: [String] -> IO ()
 runSolution args =
@@ -56,4 +56,6 @@ solutionByArg "4.2e" = (day4part2, "data/example4.txt")
 -- Day 5
 solutionByArg "5.1" = (day5part1, "data/day5.txt")
 solutionByArg "5.1e" = (day5part1, "data/example5.txt")
+solutionByArg "5.2" = (day5part2, "data/day5.txt")
+solutionByArg "5.2e" = (day5part2, "data/example5.txt")
 solutionByArg _ = (day1part1, "data/day1.txt")
