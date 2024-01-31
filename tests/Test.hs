@@ -2,22 +2,21 @@ module Main where
 
 import Solution
 import Test.HUnit
-import Data.List (break, tail)
 import qualified System.Exit as Exit
 
-createTestCase :: String -> String -> IO (Test)
+createTestCase :: String -> String -> IO Test
 createTestCase testId expected = do
   testCase <- getSolution [testId]
   pure $ TestLabel label (TestCase (assertEqual text expected testCase))
     where
       (daypart, partpart) = break (== '.') testId
-      label = "Day" <> daypart <> "Part" <> (tail partpart)
+      label = "Day" <> daypart <> "Part" <> tail partpart
       text = "should return " <> expected
 
 listToTests :: [(String, String)] -> IO [Test]
-listToTests ts = sequence $ (\t -> createTestCase (fst t) (snd t)) <$> ts
+listToTests = mapM (uncurry createTestCase)
 
-tests :: IO (Test)
+tests :: IO Test
 tests = do
   ts <- listToTests [
                     -- Day1
@@ -56,4 +55,4 @@ main :: IO ()
 main = do
   t <- tests
   result <- runTestTT t
-  if (failures result) > 0 then Exit.exitFailure else Exit.exitSuccess
+  if failures result > 0 then Exit.exitFailure else Exit.exitSuccess
